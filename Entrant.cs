@@ -8,6 +8,12 @@ namespace StructConsole
 {
     struct Entrant
     {
+        private const double CoursePointsWeight = 0.05;
+        private const double AvgPointsWeight = 0.10;
+        private const double PrimarySubjectWeight = 0.25;
+        private const double SecondarySubjectWeight = 0.40;
+        private const double TertiarySubjectWeight = 0.20;
+
         public string Name;
         public int IdNum;
         public int CoursePoints;
@@ -26,12 +32,12 @@ namespace StructConsole
         public double GetCompMark()
         {
             if (ZNOResults.Length < 3) return 0;
-            else return
-                CoursePoints * 0.05 +
-                AvgPoints * 0.10 +
-                ZNOResults[0].Points * 0.25 +
-                ZNOResults[1].Points * 0.40 +
-                ZNOResults[2].Points * 0.20;
+            return
+                CoursePoints * CoursePointsWeight +
+                AvgPoints * AvgPointsWeight +
+                ZNOResults[0].Points * PrimarySubjectWeight +
+                ZNOResults[1].Points * SecondarySubjectWeight +
+                ZNOResults[2].Points * TertiarySubjectWeight;
         }
 
         public string GetBestSubject()
